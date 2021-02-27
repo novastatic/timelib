@@ -1,2 +1,44 @@
 # timelib
+
 Initial repository for a time library written in C.
+
+# functions
+
+This program consists of five functions, excluding the main function:
+
+- int day_of_the_year(int day, int month, int year)
+- void input_date(int *day, int *month, int \*year)
+- int is_leapyear(int year)
+- int get_days_for_month(int month, int year)
+- int exists_date(int day, int month, int year)
+
+## day_of_the_year(int day, int month, int year)
+
+The function calculates for a given date of the Gregorian calendar consisting of day, month and year the number of the day and the number of the day counted from the beginning of the year (January 1). Leap years are taken into
+taken into account in the calculation. If the passed date is invalid, the return value is -1.
+| Function          | Parameters                      | Return value       |
+|-------------------|---------------------------------|--------------------|
+| day_of_the_year() | day: int, month: int, year: int | Number of day: int |
+
+## input_date(int *day, int *month, int *year)
+The function reads 3 integer values, for day, month and year. If the specified date is invalid, it is read in again until a valid date is entered.
+| Function     | Parameters                                            | Return value |
+|--------------|-------------------------------------------------------|--------------|
+| input_date() | day: pointer int month: pointer int year: pointer int | none         |
+
+## is_leapyear(int year)
+The function checks whether a given year is a leap year according to the rules of the Gregorian calendar. An error is returned for years before the year 1582. 
+| Function      | Parameters | Return value                                         |
+|---------------|------------|------------------------------------------------------|
+| is_leapyear() | year: int  | 1 if leapyear, 0 if no leapyear, -1 if invalid year  |
+## get_days_for_month(int month, int year)
+The function determines for a given month of a given year how many days the month has. The value of the month must be between 1 and 12. Leap years are taken into account.
+| Function             | Parameters            | Return value                                                    |
+|----------------------|-----------------------|-----------------------------------------------------------------|
+| get_days_for_month() | month: int, year: int | Number of days: int,  1-31 if valid month,  -1 if invalid month |
+
+## exists_date(int day, int month, int year)
+The function checks whether an entered date is valid. Dates before 1.1.1582 are invalid, as are all dates after 31.12.2400.
+| Function      | Parameters                       | Return value                             |
+|---------------|----------------------------------|------------------------------------------|
+| exists_date() | day: int, month: int, year: int  | 1 if date is valid, 0 if date is invalid |
