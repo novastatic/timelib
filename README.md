@@ -1,6 +1,7 @@
 # timelib
 
-Initial repository for a time library written in C.
+Initial repository for a time library written in C by Christian Wichmann.
+Co-author in this repository: *A. Lenz* 
 
 # functions
 
