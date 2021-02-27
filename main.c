@@ -7,19 +7,18 @@
 // Preprocessor: include libraries
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #define InputRqstYear printf("Please enter year (yyyy): ");
 #define InputRqstMonth printf("Please enter month (m/mm): ");
 #define InputRqstDay printf("Please enter day (d/dd): ");
-#define ErrorYear printf("The year you entered is not valid. Please enter a year between 1582 and 2400. \n");
-#define ErrorMonth printf("The month you entered doesn't exist. Please try again. \n");
-#define ErrorDay printf("The day you entered doesn't exist. Please try again. \n");
+#define ErrorMsgYear printf("The year you entered is not valid. Please enter a year between 1582 and 2400. \n");
+#define ErrorMsgMonth printf("The month you entered doesn't exist. Please try again. \n");
+#define ErrorMsgDay printf("The day you entered doesn't exist. Please try again. \n");
 #define ResultMsg printf("Today is the %i. day of the year",
 #define End );
 
 // Declare functionprototypes
 int day_of_the_year(int day, int month, int year);
-void input_date(int* day, int* month, int* year);
+void input_date(int *day, int *month, int *year);
 int is_leapyear(int year);
 int get_days_for_month(int month, int year);
 int exists_date(int day, int month, int year);
@@ -60,17 +59,11 @@ int day_of_the_year(int day, int month, int year)
     // Calculate day of the year
     else
     {
-        for(int i = 1; i < month - 1; i++)
+        for(int i = 0; i < month - 1; i++)
         {
-            daysTotal += get_days_for_month(i, year);
+            daysTotal += get_days_for_month(i + 1, year);
         }
         daysTotal += day;
-
-        // If leapyear and relevant month add one
-        if(is_leapyear(year) == 1 && month >= 3)
-        {
-            daysTotal += 1;
-        }
 
         return daysTotal;
     }
@@ -83,7 +76,7 @@ int day_of_the_year(int day, int month, int year)
 void input_date(int* day, int* month, int* year)
 {
     // Request input until valid date is entered
-    while (exists_date(day, month, year) == 0)
+    do
     {
         InputRqstDay
         scanf("%i", day);
@@ -96,9 +89,8 @@ void input_date(int* day, int* month, int* year)
         InputRqstYear
         scanf("%i", year);
         fflush(stdin);
-
-        printf("Date inout_date: %i.%i.%i \n", day, month, year);
     }
+    while (exists_date(*day, *month, *year) == 0);
 }
 
 
@@ -114,7 +106,7 @@ int is_leapyear(int year)
     }
     else
     {
-        if (year % 4 == 0 && year % 100 == 0 && year % 400 == 0)
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
         {
             return 1;
         }
@@ -142,7 +134,7 @@ int get_days_for_month(int month, int year)
     }
     else
     {
-        return daysPerMonth[month - 1] + is_leapyear(year);
+        return month == 2 && is_leapyear(year) ? 29 : daysPerMonth[month - 1];
     }
 }
 
@@ -153,37 +145,29 @@ int get_days_for_month(int month, int year)
 int exists_date(int day, int month, int year)
 {
     int daysPerMonth = get_days_for_month(month, year);
-    bool error = false;
 
     // Check day with the get_days_for_month function return (see above variable daysPerMonth)
     if (day > daysPerMonth || day < 1)
     {
-        ErrorDay
-        error = true;
+        ErrorMsgDay
+        return 0;
     }
 
     // Check month with the get_days_for_month function return
     if (get_days_for_month(month, year) == -1)
     {
-        ErrorMonth
-        error = true;
+        ErrorMsgMonth
+        return 0;
     }
 
     // Check year
     if (year > 2400 || year < 1582)
     {
-        ErrorYear
-        error = true;
-    }
-
-    if (error = false)
-    {
-        return 1;
-    }
-    else
-    {
+        ErrorMsgYear
         return 0;
     }
+
+    return 1;
 }
 
 
