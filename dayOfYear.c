@@ -7,6 +7,14 @@
 // Preprocessor: include libraries
 #include <stdio.h>
 #include <stdlib.h>
+#define InputRqstYear printf("Please enter year (yyyy): ");
+#define InputRqstMonth printf("Please enter month (m/mm): ");
+#define InputRqstDay printf("Please enter day (d/dd): ");
+#define ErrorMsgYear printf("The year you entered is not valid. Please enter a year between 1582 and 2400. \n");
+#define ErrorMsgMonth printf("The month you entered doesn't exist. Please try again. \n");
+#define ErrorMsgDay printf("The day you entered doesn't exist. Please try again. \n");
+#define ResultMsg printf("Today is the %i. day of the year",
+#define End );
 
 /**
  *  This function calculates the day of the year for a given date in the Gregorian calendar (starting January, 1st), consisting of day, month and year.
