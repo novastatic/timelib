@@ -115,3 +115,34 @@ int main()
     return 0;
 }
 
+/**
+ *  This function calculates the day of the year for a given date in the Gregorian calendar (starting January, 1st), consisting of day, month and year.
+ *  Leapyears are taken into account in the calculation.
+ *  If the passed date is invalid, the return value is -1.
+ **/
+int day_of_the_year(int day, int month, int year);
+
+/**
+ *  The function reads 3 integer values, for day, month and year.
+ *  If the specified date is invalid, it is read again until a valid date is entered.
+ **/
+void input_date(int* day, int* month, int* year);
+
+/**
+ *  The function checks whether a given year is a leap year according to the rules of the Gregorian calendar.
+ *  An error is returned for years before the year 1582.
+ **/
+int is_leapyear(int year);
+
+/**
+ *  The function determines for a given month of a given year how many days the month has.
+ *  The value of the month must be between 1 and 12. Leap years are taken into account.
+ **/
+int get_days_for_month(int month, int year);
+
+/**
+ *  The function checks whether an entered date is valid.
+ *  Dates before 1.1.1582 are invalid, as are all dates after 31.12.2400.
+ **/
+int exists_date(int day, int month, int year);
+
