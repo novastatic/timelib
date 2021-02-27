@@ -15,97 +15,103 @@ int is_leapyear(int year);
 int get_days_for_month(int month, int year);
 int exists_date(int day, int month, int year);
 
-
 int main()
 {
-    int daysPerMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int year;
-    int month;
     int day;
-    int daysTotal;
+    int month;
+    int year;
+    int daysTotal = 0;
+    int daysPerMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
     bool leapyear = false;
     bool dayExists = false;
+    bool dateValid = false;
+    bool monthExists = false;
 
-    // Eingabe Jahr
-    printf("Geben Sie das Jahr ein: \n");
-    scanf("%i", &year);
-    fflush(stdin);
+    printf("What day of the year is today? Find out with this little program and enter your date of choice. \n");
 
-    // Prüfung & Speicherung, ob Schaltjahr
+    // Input & check if year is valid
+    printf("Enter year (yyyy): \n");
+    while (!dateValid)
+    {
+        scanf("%i", &year);
+        if (year >= 1582 && year <= 2400)
+        {
+            dateValid = true;
+            break;
+        }
+        else
+        {
+            printf("The year you entered is not valid. Please enter a year between 1582 and 2400. \n");
+            return 0;
+        }
+    }
+
+    // Set date validation to false for checking further input
+    dateValid = false;
+
+    // Check if year is a leapyear
     if (year % 4 == 0 && year % 100 == 0 && year % 400 == 0)
     {
         leapyear = true;
     }
+    fflush(stdin);
 
-    // Eingabe Monat
-    printf("Geben Sie den Monat ein (1-12): \n");
-    while (!dayExists)
+    // Input month & check if month is valid
+    printf("Enter month (mm): \n");
+    while (!monthExists)
     {
         scanf("%i", &month);
-        // Prüfung ob der Monat existiert
+        fflush(stdin);
+        // Check if month input is valid
         if (month > 0 && month < 13)
         {
-            dayExists;
+            monthExists = true;
             break;
         }
         else
         {
-            printf("Der Monat existiert nicht. \n");
+            printf("The month you entered doesn't exist. Please try again. \n");
             return 0;
         }
     }
-    fflush(stdin);
 
-    // Eingabe Tag
-    printf("Geben Sie den Tag ein: \n");
+    // Input date & check if valid
+    printf("Enter day (dd): \n");
     while (!dayExists)
     {
         scanf("%i", &day);
-        // Prüfung, ob der Tag existiert
-        if (month == 1 && day < 32 ||
-            month == 3 && day < 32 ||
-            month == 4 && day < 31 ||
-            month == 5 && day < 32 ||
-            month == 6 && day < 31 ||
-            month == 7 && day < 32 ||
-            month == 8 && day < 32 ||
-            month == 9 && day < 31 ||
-            month == 10 && day < 32 ||
-            month == 11 && day < 31 ||
-            month == 12 && day < 32 ||
-            month == 2 && day < 29 ||
-            month == 2 && day < 30 && leapyear)
+        fflush(stdin);
+        // Check if day is valid
+        if ((day <= daysPerMonth[month - 1]) ||
+            (month == 2 && day == 29 && leapyear))
         {
-            dayExists;
+            dayExists = true;
             break;
         }
         else
         {
-            printf("Der Tag existiert nicht. \n");
+            printf("The day you entered doesn't exist. Please try again. \n");
             return 0;
         }
     }
-    fflush(stdin);
 
-    // Berechnung der Tagesanzahl
-    for (int i = 0; i < month; i++)
+    // Calculate what day of the year it is
+    for (int i = 0; i < month - 1; i++)
     {
-        if (leapyear && month >= 2)
-        {
-            daysTotal = daysTotal + daysPerMonth[i] + day + 1;
-        }
-        else if (month == 1)
-        {
-            daysTotal = day;
-        }
-        else
-        {
-            daysTotal = daysTotal + daysPerMonth[i] + day;
-        }
+        daysTotal += daysPerMonth[i];
+    }
+    daysTotal += day;
+
+    if(leapyear && month >= 3) {
+        daysTotal += 1;
     }
 
-    // Ausgabe Ergebnis
-    printf("Heute ist der %i. Tag des Jahres %i. \n ", daysTotal, year);
+    // Output result
+    printf("Today is the %i. day of the year %i (%i.%i.%i). \n ", daysTotal, year, day, month, year);
+    if(leapyear) {
+        printf("It's a leapyear.");
+    }
 
     return 0;
 }
+
