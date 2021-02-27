@@ -13,7 +13,7 @@
 #define ErrorMsgYear printf("The year you entered is not valid. Please enter a year between 1582 and 2400. \n");
 #define ErrorMsgMonth printf("The month you entered doesn't exist. Please try again. \n");
 #define ErrorMsgDay printf("The day you entered doesn't exist. Please try again. \n");
-#define ResultMsg printf("Today is the %i. day of the year",
+#define DaysTotalMsg printf("The entered day is the %i. day of the year",
 #define End );
 
 // Declare functionprototypes
@@ -36,7 +36,7 @@ int main()
     input_date(&day, &month, &year);
 
     // Output & end of program
-    ResultMsg day_of_the_year(day, month, year) End
+    DaysTotalMsg day_of_the_year(day, month, year) End
 
     return 0;
 }
