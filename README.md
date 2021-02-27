@@ -3,6 +3,12 @@
 Initial repository for a time library written in C by Christian Wichmann.
 Co-author in this repository: *A. Lenz* 
 
+## how to run timelib
+
+- Clone the repository
+- Compile both the main and the dayOfYear file
+- Now you can run timelib! Have fun 🧭🎉
+
 # functions
 
 This program consists of five functions, excluding the main function:
