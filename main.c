@@ -8,12 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dayOfYear.h"
-#define InputRqstYear printf("Please enter year (yyyy): ");
-#define InputRqstMonth printf("Please enter month (m/mm): ");
-#define InputRqstDay printf("Please enter day (d/dd): ");
-#define ErrorMsgYear printf("The year you entered is not valid. Please enter a year between 1582 and 2400. \n");
-#define ErrorMsgMonth printf("The month you entered doesn't exist. Please try again. \n");
-#define ErrorMsgDay printf("The day you entered doesn't exist. Please try again. \n");
+
+// Define constant input/output (idea inspired by Maxmimilian Hedderich)
 #define DaysTotalMsg printf("The entered day is the %i. day of the year",
 #define End );
 
