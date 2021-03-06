@@ -9,6 +9,7 @@ Co-author in this repository: *A. Lenz*
 - Compile both the main and the dayOfYear file
 - Alternatively: open the cbp file with CodeBlocks & go from there
 - Now you can run timelib! Have fun 🧭🎉
+- If you need further information, please refer to the documentation below or the included PAP-file!
 
 # functions
 
