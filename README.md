@@ -12,7 +12,7 @@ Co-author in this repository: *A. Lenz*
 - If you need further information, please refer to the documentation below or the included PAP-file!
 
 ## limitations
-- The date must be a valid date between 01.01.1582 and 31.12.2400!
+- *The date must be a valid date between 01.01.1582 and 31.12.2400!*
 
 # functions
 
