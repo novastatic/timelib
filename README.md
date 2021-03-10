@@ -28,15 +28,15 @@ This program consists of five functions, excluding the main function:
 
 The function calculates for a given date of the Gregorian calendar consisting of day, month and year the number of the day and the number of the day counted from the beginning of the year (January 1). Leap years are taken into
 taken into account in the calculation. If the passed date is invalid, the return value is -1.
-| Function          | Parameters                      | Return value       |
-|-------------------|---------------------------------|--------------------|
-| day_of_the_year() | day: int, month: int, year: int | Number of day: int |
+| Function          | Parameters                                   | Return value       |
+|-------------------|----------------------------------------------|--------------------|
+| day_of_the_year() | struct date(day: int, month: int, year: int) | Number of day: int |
 
 ## input_date()
 The function reads 3 integer values, for day, month and year. If the specified date is invalid, it is read in again until a valid date is entered.
-| Function     | Parameters                                            | Return value |
-|--------------|-------------------------------------------------------|--------------|
-| input_date() | day: pointer int month: pointer int year: pointer int | none         |
+| Function     | Parameters          | Return value |
+|--------------|---------------------|--------------|
+| input_date() | pointer struct date | none         |
 
 ## is_leapyear()
 The function checks whether a given year is a leap year according to the rules of the Gregorian calendar. An error is returned for years before the year 1582. 
@@ -51,6 +51,6 @@ The function determines for a given month of a given year how many days the mont
 
 ## exists_date()
 The function checks whether an entered date is valid. Dates before 1.1.1582 are invalid, as are all dates after 31.12.2400.
-| Function      | Parameters                       | Return value                             |
-|---------------|----------------------------------|------------------------------------------|
-| exists_date() | day: int, month: int, year: int  | 1 if date is valid, 0 if date is invalid |
+| Function      | Parameters                                    | Return value                             |
+|---------------|-----------------------------------------------|------------------------------------------|
+| exists_date() | struct date(day: int, month: int, year: int)  | 1 if date is valid, 0 if date is invalid |
